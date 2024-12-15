@@ -1,0 +1,105 @@
+styles:
+    - name: Normal
+      css:
+        fontSize: 24
+    - name: Default Paragraph Font
+    - name: Hyperlink
+      css:
+        underline: true
+    - name: Table Normal
+    - name: No List
+    - name: Header & Footer
+      css:
+        color: '#000000'
+        fontSize: 24
+        textAlign: left
+    - name: Body
+      css:
+        color: '#000000'
+        fontSize: 22
+        textAlign: left
+blocks:
+    - tag: p
+      children:
+        - tag: span
+          text: 'From:'
+          css:
+            bold: true
+        - tag: span
+          text: ' Victor'
+        - tag: br
+        - tag: span
+          text: 'To:'
+          css:
+            bold: true
+        - tag: span
+          text: ' Braden'
+        - tag: br
+        - tag: span
+          text: 'Date:'
+          css:
+            bold: true
+        - tag: span
+          text: ' Aug 02, 2023'
+        - tag: br
+        - tag: span
+          text: 'Subject:'
+          css:
+            bold: true
+        - tag: span
+          text: ' Hello!'
+    - tag: p
+    - tag: p
+      children:
+        - tag: span
+          text: Hello, World.
+        - tag: span
+          text: ' Italic'
+          css:
+            italic: true
+    - tag: p
+      text: Hello, Parallel World
+      css:
+        color: '#bc00d6'
+        bold: true
+    - tag: p
+      text: Strike
+    - tag: p
+      text: Underline
+      css:
+        underline: true
+    - tag: p
+      text: Highlight
+      css:
+        background: '#0000ff'
+    - tag: p
+      text: Shading
+      css:
+        color: '#ffffff'
+        background: '#000000'
+    - tag: p
+      text: Center Justified
+      css:
+        textAlign: center
+    - tag: p
+      children:
+        - tag: span
+          text: 'Some new '
+        - tag: span
+          text: 'text. Some '
+          css:
+            fontSize: 32
+        - tag: span
+          text: 'of it is '
+        - tag: span
+          text: red
+          css:
+            color: '#ff2600'
+        - tag: span
+          text: ', and some of it is '
+        - tag: span
+          text: green
+          css:
+            color: '#008e00'
+        - tag: span
+          text: .

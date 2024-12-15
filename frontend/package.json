@@ -1,0 +1,21 @@
+{
+  "name": "tpot_scribe",
+  "version": "0.0.0",
+  "devDependencies": {
+    "autoprefixer": "^10.4.15",
+    "daisyui": "latest",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.3",
+    "vite": "^4.4.11"
+  },
+  "private": true,
+  "scripts": {
+    "dev": "bun -b --hot vite",
+    "build": "bun -b vite build",
+    "preview": "bun -b vite preview"
+  },
+  "author": "Braden Preston",
+  "dependencies": {
+    "quill": "2.0.3"
+  }
+}

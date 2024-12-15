@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Main</title>
+</head>
+<body>
+    {% for block in document.Blocks %}
+        <{{ block.Tag }}{%- if block.CSS -%}
+            {%- set css = block.CSS %} style="
+                {%- if css.Color %}color: {{ css.Color }};{% endif -%}
+                {%- if css.Background %}background: {{ css.Background }};{% endif -%}
+                {%- if css.Bold %}font-weight: bold;{% endif -%}
+                {%- if css.Italic %}font-style: italic;{% endif -%}
+                {%- if css.Underline %}text-decoration: underline;{% endif -%}
+                {%- if css.FontSize %}font-size: {{ css.FontSize }}px;{% endif -%}
+                {%- if css.TextAlign %}text-align: {{ css.TextAlign }};{% endif -%}
+            "{%- endif -%}
+        >
+            {% if block.Text %}
+                {{ block.Text }}
+            {% endif %}
+            {% for child in block.Children %}
+                {% if child.Tag == "br" %}
+                    <br/>
+                {% else %}
+                    <{{ child.Tag }}{%- if child.CSS -%}
+                        {%- set css = child.CSS %} style="
+                            {%- if css.Color %}color: {{ css.Color }};{% endif -%}
+                            {%- if css.Background %}background: {{ css.Background }};{% endif -%}
+                            {%- if css.Bold %}font-weight: bold;{% endif -%}
+                            {%- if css.Italic %}text-decoration: underline;{% endif -%}
+                            {%- if css.Italic %}font-style: italic;{% endif -%}
+                            {%- if css.Underline %}text-decoration: underline;{% endif -%}
+                            {%- if css.FontSize %}font-size: {{ css.FontSize }}px;{% endif -%}
+                            {%- if css.TextAlign %}text-align: {{ css.TextAlign }};{% endif -%}
+                        "{%- endif -%}
+                    >
+                        {% if child.Text %}
+                            {{ child.Text }}
+                        {% endif %}
+                    </{{ child.Tag }}>
+                {% endif %}
+            {% endfor %}
+        </{{ block.Tag }}>
+    {% endfor %}
+</body>
+</html>

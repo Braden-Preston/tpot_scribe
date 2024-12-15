@@ -1,0 +1,5 @@
+# Ignore generated plaform code
+**/build/** linguist-generated
+
+# Include manually-added code
+*.sh linguist-detectable=false

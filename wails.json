@@ -1,0 +1,13 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "tpot_scribe",
+  "outputfilename": "tpot_scribe",
+  "frontend:install": "bun install",
+  "frontend:build": "bun run build",
+  "frontend:dev:watcher": "bun run dev",
+  "frontend:dev:serverUrl": "auto",
+  "author": {
+    "name": "Braden Preston",
+    "email": "bpfilmsinc@gmail.com"
+  }
+}
