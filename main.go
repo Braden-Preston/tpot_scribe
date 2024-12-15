@@ -4,6 +4,7 @@ import (
 	"embed"
 	"log"
 	"net/http"
+	"tpot_scribe/pkg/convert"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/logger"
@@ -13,7 +14,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/options/windows"
 )
 
-//go:embed all:frontend/dist components
+//go:embed all:frontend/dist pkg/ui/templates
 var assets embed.FS
 
 //go:embed build/appicon.png
@@ -22,6 +23,14 @@ var version = "0.0.0"
 
 func (a *App) Greet() string {
 	return "hello there!"
+}
+
+func (a *App) LoadDocument(filepath string) string {
+	html, err := convert.DocxToHTML(filepath)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return html
 }
 
 func main() {

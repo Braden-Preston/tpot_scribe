@@ -3,13 +3,10 @@ import './app.css';
 // import './quill.core.css'
 import './quill.snow.css'
 
-import { Greet } from "../wailsjs/go/main/App"
+import { Greet, LoadDocument } from "../wailsjs/go/main/App"
 
-// alert("test")
-
-// let msg = await Greet()
-
-// document.querySelector("#editor").innerHTML = msg
+let html = await LoadDocument("test/paragraph.docx")
+document.querySelector("#editor").innerHTML = html
 
 const validFormats = [
     'background',
