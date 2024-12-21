@@ -3,7 +3,7 @@ import './app.css'
 // import './quill.core.css'
 // import './quill.snow.css'
 
-import { LoadDocument } from '../wailsjs/go/main/App'
+import { LoadDocument } from '../wailsjs/go/scribe/App'
 
 async function main() {
 

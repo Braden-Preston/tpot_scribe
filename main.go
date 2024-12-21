@@ -4,7 +4,7 @@ import (
 	"embed"
 	"log"
 	"net/http"
-	"tpot_scribe/pkg/convert"
+	"tpot_scribe/pkg/scribe"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/logger"
@@ -14,29 +14,15 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/options/windows"
 )
 
-//go:embed all:frontend/dist pkg/ui/templates
+//go:embed all:frontend/dist pkg/ui/templates all:pkg/scribe
 var assets embed.FS
 
 //go:embed build/appicon.png
 var icon []byte
-var version = "0.0.0"
-
-func (a *App) Greet() string {
-	return "hello there!"
-}
-
-func (a *App) LoadDocument(filepath string) string {
-	html, err := convert.DocxToHTML(filepath)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return html
-}
 
 func main() {
 	// Create an instance of the app structure and custom Middleware
-	app := NewApp()
-	r := NewChiRouter()
+	app := scribe.NewApp()
 
 	// Create application with options
 	err := wails.Run(&options.App{
@@ -53,20 +39,21 @@ func main() {
 		StartHidden:       false,
 		HideWindowOnClose: false,
 		BackgroundColour:  &options.RGBA{R: 255, G: 255, B: 255, A: 255},
+		AlwaysOnTop:       false,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 			Middleware: func(next http.Handler) http.Handler {
-				r.NotFound(next.ServeHTTP)
-				return r
+				app.Router.NotFound(next.ServeHTTP)
+				return app.Router
 			},
 		},
 		Menu:             nil,
 		Logger:           nil,
 		LogLevel:         logger.DEBUG,
-		OnStartup:        app.startup,
-		OnDomReady:       app.domReady,
-		OnBeforeClose:    app.beforeClose,
-		OnShutdown:       app.shutdown,
+		OnStartup:        app.Startup,
+		OnDomReady:       app.DomReady,
+		OnBeforeClose:    app.BeforeClose,
+		OnShutdown:       app.Shutdown,
 		WindowStartState: options.Normal,
 		Bind: []interface{}{
 			app,
@@ -95,7 +82,7 @@ func main() {
 			WindowIsTranslucent:  true,
 			About: &mac.AboutInfo{
 				Title:   "TPOT Scribe",
-				Message: "And editor for ThePathofTruth.com",
+				Message: "An editor for ThePathofTruth.com",
 				Icon:    icon,
 			},
 		},
