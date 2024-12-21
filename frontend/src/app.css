@@ -2,73 +2,160 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Volkhov';
+  src: url('assets/fonts/Volkhov-Regular.ttf');
+}
+
 body {
   background: white;
 }
 
-/* #editor-container { 
-  @apply bg-blue-300 block relative;
-} */
-
-
-/* 
-body {
-  font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-  "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-  sans-serif;
-  background-image: radial-gradient(at 47% 33%, hsl(162deg 77% 40% / 72%) 0, transparent 45%), radial-gradient(at 82% 65%, hsl(218deg 60.88% 40.07%) 0, transparent 55%);
+#toolbar {
+  @apply border h-10 flex items-center px-1;
 }
 
-@font-face {
-  font-family: "Nunito";
-  font-style: normal;
+#toolbar button {
+  @apply h-8 w-8 rounded hover:bg-gray-100;
+  
+}
+
+#toolbar button.ql-active {
+  @apply  bg-gray-100;
+}
+
+#toolbar .ql-bold {
+  @apply text-red-200;
+}
+
+#editor {
+  position: relative;
+}
+
+#editor h1,
+#editor h2,
+#editor h3,
+#editor h4,
+#editor h5,
+#editor h6 {
+  font-family: 'Volkhov', serif;
+  color: #660000;
+  line-height: 1.2;
+  margin-bottom: 3%;
+  clear: both;
+  margin-bottom: 17.78125px;
+}
+
+#editor h1 {
+  font-size: 60px;
   font-weight: 400;
-  src: local(""),
-  url("../fonts/nunito-v16-latin-regular.woff2") format("woff2");
 }
 
-#app {
-  height: 100vh;
-  text-align: center;
+#editor h2 {
+  font-size: 30px;
+  /* margin-bottom: 19.03125px; */
 }
 
-
-@keyframes grow-x {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
+#editor h3 {
+  font-size: 28px;
+  /* margin-bottom: 19.03125px; */
 }
 
-@keyframes shrink-x {
-  from {
-    transform: scaleX(1);
-  }
-  to {
-    transform: scaleX(0);
-  }
+#editor h4 {
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 22px;
+  /* margin-bottom: 19.03125px; */
 }
 
-::view-transition-old(main-header),
-::view-transition-new(main-header) {
-  height: auto;
-  right: 0;
-  left: auto;
-  transform-origin: right center;
-}
-::view-transition-image-pair(root) {
-  isolation: auto;
+#editor h5 {
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  /* margin-bottom: 19.03125px; */
 }
 
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
-  display: block;
+#editor h6 {
+  font-size: 16px;
+  margin-bottom: 19.03125px;
 }
 
-.main-header {
-  view-transition-name: main-header;
+#editor p {
+  font-size: 18px;
+  line-height: 30.6px;
+  margin-bottom: 21.6px;
+  /* margin-bottom: 18px; */
+}
+
+#editor ol,
+#editor ul {
+  font-size: 18px;
+  line-height: 30.6px;
+  margin-bottom: 25.200001px;
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin-left: 20px;
+}
+#editor ol {
+  list-style-type: decimal;
+}
+#editor ul {
+  list-style-type: square;
+}
+#editor li {
+  font-size: 18px;
+  margin-bottom: 11.5px;
+  line-height: 30.6px;
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#editor blockquote {
+  font-size: 22px;
+  border-top: 2px solid rgb(39, 44, 48);
+  border-bottom: 2px solid rgb(39, 44, 48);
+  padding: 30px 0px 10px 59.28125px;
+  margin: 22px 0px 22px 0px;
+  /* margin-block-start: 22px; */
+  line-height: 35.200001px;
+  height: 101px;
+  position: relative;
+}
+
+#editor blockquote:before {
+  content: '\201C';
+  font-family: 'georgia';
+  position: absolute;
+  left: 0;
+  font-size: 80px;
+  width: 30px;
+  top: 25px;
+  line-height: 1;
+}
+
+/* #editor .embed-vimeo {
+  margin-bottom: 1.2em;
+}
+
+#editor b,
+#editor strong {
+  font-weight: bold;
+}
+
+#editor dfn,
+#editor cite,
+#editor em,
+#editor i {
+  font-style: italic;
 } */
+
+
+@layer components {
+  .editor-toolbar-button {
+    @apply hover:bg-gray-100 rounded-md p-2;
+
+    /* &.ql-active {
+      @apply bg-gray-100;
+    } */
+
+  }
+  .editor-toolbar-icon{
+    @apply w-3 h-3 text-gray-400
+  }
+}

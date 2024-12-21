@@ -6,11 +6,9 @@ toolchain go1.23.4
 
 require (
 	github.com/a-h/templ v0.2.793
-	github.com/flosch/pongo2/v6 v6.0.0
 	github.com/go-chi/chi/v5 v5.1.0
 	github.com/gomutex/godocx v0.1.5
 	github.com/wailsapp/wails/v2 v2.9.2
-	github.com/yosssi/gohtml v0.0.0-20201013000340-ee4748c638f4
 	gopkg.in/yaml.v3 v3.0.1
 )
 
@@ -41,4 +39,5 @@ require (
 	golang.org/x/net v0.32.0 // indirect
 	golang.org/x/sys v0.28.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
+	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 )

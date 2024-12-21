@@ -2,12 +2,11 @@ package convert
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"strings"
 
-	"github.com/flosch/pongo2/v6"
 	"github.com/gomutex/godocx"
-	"github.com/yosssi/gohtml"
 	"gopkg.in/yaml.v3"
 )
 
@@ -66,11 +65,16 @@ func ParseDocument(filepath string) (*Document, error) {
 				}
 			}
 			textContent := strings.Join(texts, "")
+			textContent = strings.TrimSpace(textContent)
 
 			// Create a new inline element
 			inlineElement := InlineElement{
 				Tag:  "span",
 				Text: textContent,
+			}
+
+			if textContent == "" {
+				inlineElement.Tag = "br"
 			}
 
 			// Get CSS props
@@ -86,7 +90,6 @@ func ParseDocument(filepath string) (*Document, error) {
 				})
 			} else {
 				children = append(children, inlineElement)
-
 			}
 
 		}
@@ -105,19 +108,20 @@ func ParseDocument(filepath string) (*Document, error) {
 
 func DocxToHTML(filepath string) (string, error) {
 
+	ctx := context.Background()
+
 	document, err := ParseDocument(filepath)
 	if err != nil {
 		return "", err
 	}
 
 	buff := bytes.NewBuffer([]byte{})
-	tplExample := pongo2.Must(pongo2.FromFile("pkg/convert/templates/document.html.jinja"))
-	err = tplExample.ExecuteWriter(pongo2.Context{"document": document}, gohtml.NewWriter(buff))
+	err = DocumentComponent("braden", *document).Render(ctx, buff)
 	if err != nil {
 		return "", err
 	}
-
-	return buff.String(), err
+	html := strings.ReplaceAll(buff.String(), "styles=", "style=")
+	return html, err
 }
 
 func DocxToJSON(filepath string) (string, error) {

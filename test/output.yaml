@@ -1,7 +1,7 @@
 styles:
     - name: Normal
       css:
-        fontSize: 24
+        fontSize: 24px
     - name: Default Paragraph Font
     - name: Hyperlink
       css:
@@ -11,12 +11,12 @@ styles:
     - name: Header & Footer
       css:
         color: '#000000'
-        fontSize: 24
+        fontSize: 24px
         textAlign: left
     - name: Body
       css:
         color: '#000000'
-        fontSize: 22
+        fontSize: 22px
         textAlign: left
 blocks:
     - tag: p
@@ -26,35 +26,35 @@ blocks:
           css:
             bold: true
         - tag: span
-          text: ' Victor'
+          text: Victor
         - tag: br
         - tag: span
           text: 'To:'
           css:
             bold: true
         - tag: span
-          text: ' Braden'
+          text: Braden
         - tag: br
         - tag: span
           text: 'Date:'
           css:
             bold: true
         - tag: span
-          text: ' Aug 02, 2023'
+          text: Aug 02, 2023
         - tag: br
         - tag: span
           text: 'Subject:'
           css:
             bold: true
         - tag: span
-          text: ' Hello!'
+          text: Hello!
     - tag: p
     - tag: p
       children:
         - tag: span
           text: Hello, World.
         - tag: span
-          text: ' Italic'
+          text: Italic
           css:
             italic: true
     - tag: p
@@ -84,19 +84,19 @@ blocks:
     - tag: p
       children:
         - tag: span
-          text: 'Some new '
+          text: Some new
         - tag: span
-          text: 'text. Some '
+          text: text. Some
           css:
-            fontSize: 32
+            fontSize: 32px
         - tag: span
-          text: 'of it is '
+          text: of it is
         - tag: span
           text: red
           css:
             color: '#ff2600'
         - tag: span
-          text: ', and some of it is '
+          text: ', and some of it is'
         - tag: span
           text: green
           css:

@@ -19,7 +19,7 @@ func CssFromProps(para *ctypes.ParagraphProp, run *ctypes.RunProperty) CSS {
 			css.Color = fmt.Sprintf("#%s", run.Color.Val)
 		}
 		if run.Size != nil {
-			css.FontSize = int(run.Size.Value)
+			css.FontSize = fmt.Sprintf("%dpx", run.Size.Value)
 		}
 		if run.Bold != nil {
 			isBold, _ := strconv.ParseBool(string(*run.Bold.Val))

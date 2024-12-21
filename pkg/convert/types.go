@@ -26,8 +26,8 @@ type NamedStyle struct {
 type CSS struct {
 	Color      string `json:"color,omitempty" yaml:"color,omitempty"`
 	Background string `json:"background,omitempty" yaml:"background,omitempty"`
-	FontSize   int    `json:"fontSize,omitempty" yaml:"fontSize,omitempty"`
-	FontFamily int    `json:"fontFamily,omitempty" yaml:"fontFamily,omitempty"`
+	FontSize   string `json:"fontSize,omitempty" yaml:"fontSize,omitempty"`
+	FontFamily string `json:"fontFamily,omitempty" yaml:"fontFamily,omitempty"`
 	Bold       bool   `json:"bold,omitempty" yaml:"bold,omitempty"`
 	Italic     bool   `json:"italic,omitempty" yaml:"italic,omitempty"`
 	Underline  bool   `json:"underline,omitempty" yaml:"underline,omitempty"`

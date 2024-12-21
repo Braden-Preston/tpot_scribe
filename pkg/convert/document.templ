@@ -1,0 +1,89 @@
+package convert
+
+import "strings"
+
+templ Hello(name string) {
+	<div>Hellos, { name }</div>
+}
+
+func inlineStyle(css CSS) string {
+	styles := []string{}
+	if css.Color != "" {
+		styles = append(styles, "color: "+css.Color+";")
+	}
+	if css.Background != "" {
+		styles = append(styles, "background: "+css.Background+";")
+	}
+	if css.Bold {
+		styles = append(styles, "font-weight: bold;")
+	}
+	if css.Italic {
+		styles = append(styles, "font-style: italic;")
+	}
+	if css.Underline {
+		styles = append(styles, "text-decoration: underline;")
+	}
+	if css.FontSize != "" {
+		styles = append(styles, "font-size: "+css.FontSize+";")
+	}
+	if css.TextAlign != "" {
+		styles = append(styles, "text-align: "+css.TextAlign+";")
+	}
+	return strings.Join(styles, " ")
+}
+
+templ Tag(name string, css *CSS) {
+	switch name {
+		case "br":
+			<br/>
+		case "p":
+			if css != nil {
+				<p styles={ inlineStyle(*css) }>
+					{ children... }
+				</p>
+			} else {
+				<p>
+					{ children... }
+				</p>
+			}
+		case "span":
+			if css != nil {
+				<span styles={ inlineStyle(*css) }>
+					{ children... }
+				</span>
+			} else {
+				{ children... }
+			}
+	}
+}
+
+templ BlockComponent(block BlockElement) {
+	@Tag(block.Tag, block.CSS) {
+		if block.Text != "" {
+			{ block.Text }
+		}
+		for idx, child := range block.Children {
+			if idx == 0 {
+				@templ.Raw("\n")
+			}
+			@templ.Raw("   ")
+			@InlineComponent(child)
+			@templ.Raw("\n")
+		}
+	}
+	@templ.Raw("\n")
+}
+
+templ InlineComponent(child InlineElement) {
+	@Tag(child.Tag, child.CSS) {
+		if child.Text != "" {
+			{ child.Text }
+		}
+	}
+}
+
+templ DocumentComponent(name string, document Document) {
+	for _, block := range document.Blocks {
+		@BlockComponent(block)
+	}
+}
